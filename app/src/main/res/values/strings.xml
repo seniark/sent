@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Sent</string>
+    <string name="ndopen">Drawer Open</string>
+    <string name="ndclose">Drawer Close</string>
+</resources>
