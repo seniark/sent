@@ -5,9 +5,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.firebase.ui.auth.AuthUI;
@@ -37,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
             startActivityForResult(
                     // Get an instance of AuthUI based on the default app
-                    AuthUI.getInstance().createSignInIntentBuilder().build(),
+                    AuthUI.getInstance().createSignInIntentBuilder().setLogo(R.drawable.mountain_icon).build(),
                     RC_SIGN_IN);
         }
     }
