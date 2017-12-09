@@ -5,6 +5,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.firebase.ui.auth.AuthUI;
@@ -23,20 +24,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         myLayout = findViewById(R.id.login_layout);
-
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        if (auth.getCurrentUser() != null) {
-            Log.d("LoginActivity", "Already Signed In");
-            goToHome();
-        } else {
-            // not signed in
-            // Choose authentication providers
-
-            startActivityForResult(
-                    // Get an instance of AuthUI based on the default app
-                    AuthUI.getInstance().createSignInIntentBuilder().setLogo(R.drawable.mountain_icon).build(),
-                    RC_SIGN_IN);
-        }
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -79,13 +66,29 @@ public class LoginActivity extends AppCompatActivity {
         snackbar.show();
     }
 
-
-
     protected void goToHome()
     {
         Intent i = new Intent();
         i.setClass(LoginActivity.this, HomeActivity.class);
         startActivity(i);
+
+    }
+
+    protected void signInClicked(View v)
+    {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            Log.d("LoginActivity", "Already Signed In");
+            goToHome();
+        } else {
+            // not signed in
+            // Choose authentication providers
+
+            startActivityForResult(
+                    // Get an instance of AuthUI based on the default app
+                    AuthUI.getInstance().createSignInIntentBuilder().setLogo(R.drawable.mountain_icon).build(),
+                    RC_SIGN_IN);
+        }
 
     }
 }

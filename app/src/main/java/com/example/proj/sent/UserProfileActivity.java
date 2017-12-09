@@ -25,11 +25,7 @@ public class UserProfileActivity extends BaseNavDrawerActivity {
         getLayoutInflater().inflate(R.layout.activity_user_profile, contentFrameLayout);
 
         name = findViewById(R.id.name_text);
-
         name.setText("Hello, " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-
-
-
     }
 
     protected void signOutClicked(View v)
@@ -47,7 +43,7 @@ public class UserProfileActivity extends BaseNavDrawerActivity {
     protected void goToSplash()
     {
         Intent i = new Intent();
-        i.setClass(UserProfileActivity.this, SplashScreenActivity.class);
+        i.setClass(UserProfileActivity.this, LoginActivity.class);
         startActivity(i);
     }
 }
