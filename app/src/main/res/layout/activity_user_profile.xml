@@ -24,7 +24,7 @@
             android:theme="@android:style/ThemeOverlay.Material.ActionBar"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -32,11 +32,20 @@
             android:id="@+id/homeLinearLayout">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:id="@+id/up_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="User Profile"/>
 
-        </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign Out"
+                android:layout_below="@+id/up_text"
+                android:onClick="signOutClicked"/>
+
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

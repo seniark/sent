@@ -7,70 +7,7 @@
     android:orientation="vertical"
     android:weightSum="1"
     android:gravity="center_horizontal"
-    tools:context="com.example.proj.sent.Login">
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
-
-        <ImageView
-            android:id="@+id/mountainIcon"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/mountain_icon" />
-
-        <TextView
-            android:id="@+id/SentTitle"
-            android:text="Sent."
-            android:textSize="88dp"
-            android:textStyle="bold"
-            android:fontFeatureSettings="b"
-            android:textAlignment="center"
-            android:layout_width="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/login_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="email" />
-
-    <EditText
-        android:id="@+id/login_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="password" />
-
-
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:background="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
-
-        <Button
-            android:id="@+id/signin_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="signInClicked"
-            android:text="Sign In" />
-
-        <Button
-            android:id="@+id/registerbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Register" />
-
-
-    </LinearLayout>
-
+    android:id="@+id/login_layout"
+    tools:context="com.example.proj.sent.LoginActivity">
 
 </LinearLayout>
