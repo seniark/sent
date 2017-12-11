@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,6 +22,7 @@ public class BaseNavDrawerActivity extends AppCompatActivity {
 
     private TextView userName;
     private TextView userEmail;
+    private RelativeLayout headerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class BaseNavDrawerActivity extends AppCompatActivity {
 
         userName = hView.findViewById(R.id.header_name);
         userEmail = hView.findViewById(R.id.header_email);
+        headerLayout = hView.findViewById(R.id.header_layout);
 
         userName.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         userEmail.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());

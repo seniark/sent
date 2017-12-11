@@ -79,7 +79,10 @@ public class TickRecyclerAdapter extends RecyclerView.Adapter<TickRecyclerAdapte
     public void onBindViewHolder(ViewHolder holder,final int position) {
         holder.route_name.setText(list_tick.get(position).getName());
         holder.route_grade.setText(list_tick.get(position).getGrade());
-        GlideApp.with(mCtx_MR).load(R.drawable.min_mtn_1).into(holder.route_img);
+
+        GlideApp.with(mCtx_MR)
+                .load(list_tick.get(position).getImage_uri())
+                .into(holder.route_img);
     }
 
     @Override

@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -116,10 +115,10 @@ public class TickListActivity extends BaseNavDrawerActivity {
     protected void testDB()
     {
         ArrayList<Tick> t = new ArrayList<>();
-        Tick t1 = new Tick("TestRoute", "5.1");
-        Tick t2 = new Tick("TestRoute2", "5.2");
-        Tick t3 = new Tick("TestRoute3","5.11a");
-        Tick t4 = new Tick("TestRoute4", "5.10b");
+        Tick t1 = new Tick("TestRoute", "5.1", "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_1.jpg?alt=media&token=9525eb9b-da1f-4dcf-8be3-3c807992f77b");
+        Tick t2 = new Tick("TestRoute2", "5.2", "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_2.png?alt=media&token=b7d2dea3-7f33-4e5e-b219-d9a4e6966dd5");
+        Tick t3 = new Tick("TestRoute3","5.11a", "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_3.png?alt=media&token=f918fc77-ca34-45be-802e-7dde10339abd");
+        Tick t4 = new Tick("TestRoute4", "5.10b", "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_5.jpg?alt=media&token=6d826d65-1dc0-4ced-bd47-a87a5f91b14e");
         t.add(t1);
         t.add(t2);
         t.add(t3);
@@ -130,13 +129,6 @@ public class TickListActivity extends BaseNavDrawerActivity {
     protected void postTicks(List<Tick> t)
     {
         mTickListRef.setValue(t);
-    }
-
-    protected void loadCardImage()
-    {
-        ImageView iv = findViewById(R.id.tickBanner);
-        GlideApp.with(this).load(R.drawable.min_mtn_1).into(iv);
-
     }
 
 }
