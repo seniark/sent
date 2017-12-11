@@ -11,5 +11,7 @@ public class WODActivity extends BaseNavDrawerActivity {
         super.onCreate(savedInstanceState);
         FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_wod, contentFrameLayout);
+
+        getSupportActionBar().setTitle("Whip of the Day");
     }
 }

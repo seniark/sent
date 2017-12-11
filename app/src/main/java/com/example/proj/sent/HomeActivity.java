@@ -13,6 +13,6 @@ public class HomeActivity extends BaseNavDrawerActivity{
         FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_home, contentFrameLayout);
 
-
+        getSupportActionBar().setTitle("Home");
     }
 }

@@ -31,6 +31,8 @@ public class TickListActivity extends BaseNavDrawerActivity {
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_tick_list, contentFrameLayout);
 
+        getSupportActionBar().setTitle("Tick List");
+
         mTickList = new ArrayList<>();
         //loadCardImage();
 

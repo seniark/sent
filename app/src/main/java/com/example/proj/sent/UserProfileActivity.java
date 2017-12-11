@@ -24,6 +24,8 @@ public class UserProfileActivity extends BaseNavDrawerActivity {
         FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_user_profile, contentFrameLayout);
 
+        getSupportActionBar().setTitle("User Profile");
+
         name = findViewById(R.id.name_text);
         name.setText("Hello, " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
     }
