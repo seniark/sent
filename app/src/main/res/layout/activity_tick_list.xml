@@ -24,19 +24,16 @@
             android:theme="@android:style/ThemeOverlay.Material.ActionBar"
             />
 
-        <LinearLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/tickRecyclerView"
+            android:scrollbars="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_below="@id/my_toolbar"
-            android:id="@+id/homeLinearLayout">
+            android:layout_below="@id/my_toolbar">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Tick List!"/>
 
-        </LinearLayout>
+
+        </android.support.v7.widget.RecyclerView>
 
     </RelativeLayout>
 

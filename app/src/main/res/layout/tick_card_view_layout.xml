@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="10dp"
+    card_view:cardUseCompatPadding="true">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/previewLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/tickBanner"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layout_constraintDimensionRatio="h,16:9"
+                card_view:layout_editor_absoluteY="91dp" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tickBanner"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/routeNameTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textSize="20dp"
+                android:paddingLeft="15dp"
+                android:text="Test Route # 1"/>
+
+
+            <TextView
+                android:id="@+id/routeGradeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5.10a"
+                android:gravity="left"
+                android:paddingLeft="15dp"
+                android:paddingBottom="10dp"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
