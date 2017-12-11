@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -72,7 +71,7 @@ public class BaseNavDrawerActivity extends AppCompatActivity {
                         break;
 
                     case R.id.item4:
-                        anIntent = new Intent(getApplicationContext(), WODActivity.class);
+                        anIntent = new Intent(getApplicationContext(), VODActivity.class);
                         startActivity(anIntent);
                         drawerLayout.closeDrawers();
                         break;

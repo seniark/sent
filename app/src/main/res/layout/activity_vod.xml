@@ -32,9 +32,9 @@
             android:id="@+id/homeLinearLayout">
 
             <TextView
+                android:id="@+id/vodContent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="WoD!"/>
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
