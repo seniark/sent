@@ -15,12 +15,12 @@
         android:layout_height="wrap_content">
 
 
-            <ImageView
-                android:id="@+id/tickBanner"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:layout_constraintDimensionRatio="h,16:9"
-                card_view:layout_editor_absoluteY="91dp" />
+        <ImageView
+            android:id="@+id/tickBanner"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintDimensionRatio="h,16:9"
+            card_view:layout_editor_absoluteY="91dp" />
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -49,8 +49,6 @@
                 android:textSize="14sp" />
 
         </LinearLayout>
-
-
 
     </RelativeLayout>
     </android.support.v7.widget.CardView>
