@@ -1,54 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer"
-    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:openDrawer="start">
+    android:layout_height="match_parent">
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/my_youtube_view"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/my_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@android:style/ThemeOverlay.Material.ActionBar"
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_below="@id/my_toolbar"
-            android:id="@+id/homeLinearLayout">
-
-            <TextView
-                android:id="@+id/vodContent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/navigation_view"
+    </com.google.android.youtube.player.YouTubePlayerView>
+    <Button
+        android:id="@+id/play_button"
+        android:text="Play"
+        app:layout_constraintTop_toBottomOf="@id/my_youtube_view"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:itemIconTint="@color/colorAccent"
-        android:overScrollMode="always"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/header"
-        app:menu="@menu/drawer_menu">
-    </android.support.design.widget.NavigationView>
-</android.support.v4.widget.DrawerLayout>
+        android:layout_height="wrap_content" />
+</android.support.constraint.ConstraintLayout>

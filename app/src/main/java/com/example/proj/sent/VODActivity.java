@@ -1,15 +1,16 @@
 package com.example.proj.sent;
 
-import android.content.Intent;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,32 +18,59 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class VODActivity extends BaseNavDrawerActivity {
+public class VODActivity extends YouTubeBaseActivity {
 
     private FirebaseDatabase mDatabase;
     private DatabaseReference mVodRef;
     private String video_url;
     private TextView content;
+    Button b;
+    YouTubePlayerView ypv;
+    YouTubePlayer.OnInitializedListener onInitializedListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
-        getLayoutInflater().inflate(R.layout.activity_vod, contentFrameLayout);
 
-        getSupportActionBar().setTitle("Video of the Day");
+        setContentView(R.layout.activity_vod);
+
+
         video_url = "";
-
-        content = findViewById(R.id.vodContent);
 
         mDatabase = FirebaseDatabase.getInstance();
         mVodRef = mDatabase.getReference("vod");
+
+
+
+        ypv=(YouTubePlayerView)findViewById(R.id.my_youtube_view);
+        b=(Button)findViewById(R.id.play_button);
+        onInitializedListener=new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider,
+                                                YouTubePlayer youTubePlayer, boolean b) {
+                Log.d("yt", "loading: " + video_url);
+                youTubePlayer.loadVideo(video_url);
+            }
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider,
+                                                YouTubeInitializationResult youTubeInitializationResult) {
+
+            }
+        };
 
         ValueEventListener tickListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 video_url = dataSnapshot.getValue(String.class);
-                content.setText(video_url);
+                Log.d("yt", "registering onClick...");
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ypv.initialize("AIzaSyDBA1nX5nn6UAhGdLta1pBHICR8WAVnLfY",
+                                onInitializedListener);
+                    }
+                });
+
             }
 
             @Override
