@@ -66,7 +66,7 @@ public class VODActivity extends YouTubeBaseActivity {
                 b.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ypv.initialize("AIzaSyDBA1nX5nn6UAhGdLta1pBHICR8WAVnLfY",
+                        ypv.initialize("AIzaSyAPM5u5xJWKy95zSyvq8Kccu9BfgRCNIXs",
                                 onInitializedListener);
                     }
                 });
