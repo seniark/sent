@@ -6,6 +6,10 @@ package com.example.proj.sent;
 
 public class Tick {
 
+    public enum Field {
+        NAME, GRADE, IMAGEURI;
+    }
+
     private String name;
     private String grade;
     private String image_uri;

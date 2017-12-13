@@ -23,7 +23,6 @@ public class VODActivity extends YouTubeBaseActivity {
     private FirebaseDatabase mDatabase;
     private DatabaseReference mVodRef;
     private String video_url;
-    private TextView content;
     YouTubePlayerView ypv;
     YouTubePlayer.OnInitializedListener onInitializedListener;
 
@@ -32,7 +31,6 @@ public class VODActivity extends YouTubeBaseActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_vod);
-
 
         video_url = "";
 

@@ -11,47 +11,118 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class TickDetailActivity extends BaseNavDrawerActivity {
 
-    public static final String ARG_NAME = "name";
-    public static final String ARG_GRADE = "grade";
-    public static final String ARG_URI = "uri";
+    public static final String ARG_TICKNUM = "ticknum";
 
-    TextView routeName;
+    private TextView routeName;
+    private TextView routeGrade;
+    private ImageView route_img;
+    private int tickNumber;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mTickListRef;
+    private Tick mTick;
+    private Tick.Field mEditing;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
+        FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_tick_detail, contentFrameLayout);
 
         Bundle args = getIntent().getExtras();
+
+        routeGrade = findViewById(R.id.detailRouteGradeTextView);
+        route_img = findViewById(R.id.tickDetailBanner);
         routeName =  findViewById(R.id.detailRouteNameTextView);
-        routeName.setText(args.getString(ARG_NAME));
 
-        ((TextView) findViewById(R.id.detailRouteGradeTextView)).setText(args.getString(ARG_GRADE));
-        ImageView route_img = findViewById(R.id.tickDetailBanner);
+        mEditing = Tick.Field.NAME;
 
-        GlideApp.with(TickDetailActivity.this)
-                .load(args.getString(ARG_URI))
-                .into(route_img);
+        tickNumber = Integer.parseInt(args.getString(ARG_TICKNUM));
+        Log.d("td", "Tick Number: " + Integer.toString(tickNumber));
+
+        mDatabase = FirebaseDatabase.getInstance();
+        mTickListRef = mDatabase.getReference(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        ValueEventListener tickListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int i=0;
+                for(DataSnapshot tickSnapshot : dataSnapshot.getChildren())
+                {
+                    //deal with tick object
+                    if(i == tickNumber)
+                    {
+                        mTick = tickSnapshot.getValue(Tick.class);
+                        Log.d("db", tickSnapshot.getValue(Tick.class).getName());
+                        break;
+                    }
+                    i++;
+                }
+
+                //load it into the view
+                routeName.setText(mTick.getName());
+                routeGrade.setText(mTick.getGrade());
+                if(!TickDetailActivity.this.isFinishing()) {
+                    GlideApp.with(TickDetailActivity.this)
+                            .load(mTick.getImage_uri())
+                            .into(route_img);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting tick failed, log a message
+                Log.w("db", "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        mTickListRef.addValueEventListener(tickListener);
     }
 
-    protected void changeRouteName()
+    protected void postTickToPosition(Tick t, int p)
     {
+        mTickListRef.child(Integer.toString(p)).setValue(t);
+    }
+
+    protected void setNewValue(Tick.Field tf)
+    {
+        mEditing = tf;
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-        alert.setTitle("Title");
-        alert.setMessage("Message");
+        alert.setMessage("Enter New Value:");
 
         final EditText input = new EditText(this);
         alert.setView(input);
 
         alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
+
                 String value = input.getText().toString();
-                Log.d("edit", value);
+
+                switch(mEditing)
+                {
+                    case NAME:
+                        mTick.setName(value);
+                        break;
+                    case GRADE:
+                        mTick.setGrade(value);
+                        break;
+                    case IMAGEURI:
+                        Log.d("", "NOT IMPLEMENTED");
+                        break;
+                    default:
+                        Log.d("detail", "field not found");
+                        return;
+                }
+                postTickToPosition(mTick, tickNumber);
             }
         });
 
@@ -60,13 +131,23 @@ public class TickDetailActivity extends BaseNavDrawerActivity {
                 // Canceled.
             }
         });
-
         alert.show();
-
     }
 
-    public void editNameButtonPressed (View v)
+    public void editPressed (View v)
     {
-        changeRouteName();
+        switch(v.getId())
+        {
+            case R.id.editNameButton:
+                setNewValue(Tick.Field.NAME);
+                break;
+            case R.id.editGradeButton:
+                setNewValue(Tick.Field.GRADE);
+                break;
+            default:
+                break;
+        }
+
+
     }
 }

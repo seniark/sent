@@ -57,13 +57,25 @@ public class TickListActivity extends BaseNavDrawerActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+                //RecyclerView.Adapter tra = recycler_view.getAdapter();
+                //while(tra.getItemCount() != 0)
+                //{
+                //    tra.notifyItemRemoved(0);
+                //}
+
+                if(mTickList.size() > 0)
+                {
+                    recycler_view.getAdapter().notifyItemRangeRemoved(0,mTickList.size() - 1);
+                }
+
+                mTickList.clear();
                 for(DataSnapshot tickSnapshot : dataSnapshot.getChildren())
                 {
                     //deal with tick object
                     mTickList.add(tickSnapshot.getValue(Tick.class));
-                    recycler_view.getAdapter().notifyItemInserted(mTickList.size());
                     Log.d("db", tickSnapshot.getValue(Tick.class).getName());
                 }
+                recycler_view.getAdapter().notifyItemRangeInserted(0,mTickList.size() - 1);
             }
 
             @Override
@@ -74,7 +86,7 @@ public class TickListActivity extends BaseNavDrawerActivity {
         };
         mTickListRef.addValueEventListener(tickListener);
 
-        testDB();
+        //testDB();
 
     }
 
@@ -86,29 +98,18 @@ public class TickListActivity extends BaseNavDrawerActivity {
 
                 Log.d("clicks", "registered tick click");
 
-                Tick mTick = mTickList.get(position);
                 Bundle args = new Bundle();
-                args.putString(TickDetailActivity.ARG_NAME, mTick.getName());
-                args.putString(TickDetailActivity.ARG_GRADE, mTick.getGrade());
-                args.putString(TickDetailActivity.ARG_URI, mTick.getImage_uri());
+                args.putString(TickDetailActivity.ARG_TICKNUM, Integer.toString(position));
 
                 Intent i = new Intent();
                 i.putExtras(args);
                 i.setClass(TickListActivity.this, TickDetailActivity.class);
                 startActivity(i);
-
-
-
             }
             @Override
-            public void onItemLongClick(View v, int position) {
-
-            }
+            public void onItemLongClick(View v, int position) {}
         });
     }
-
-
-
 
 
 
