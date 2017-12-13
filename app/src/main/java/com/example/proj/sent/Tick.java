@@ -10,6 +10,7 @@ public class Tick {
     private String grade;
     private String image_uri;
 
+
     public String getName() {return this.name; }
     public String getGrade() {return this.grade; }
     public String getImage_uri() {return this.image_uri;}
@@ -23,8 +24,6 @@ public class Tick {
         this.name = name;
         this.grade = grade;
         this.image_uri = image_uri;
-
-
     }
 
     public Tick()

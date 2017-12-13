@@ -1,5 +1,6 @@
 package com.example.proj.sent;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -83,23 +84,20 @@ public class TickListActivity extends BaseNavDrawerActivity {
             @Override
             public void onItemClick(View v, int position) {
 
-                /*
-                Movie mMovie = mMovieList.get(position);
+                Log.d("clicks", "registered tick click");
 
+                Tick mTick = mTickList.get(position);
                 Bundle args = new Bundle();
-                args.putString(MovieDetailActivity.ARG_TITLE, mMovie.getName());
-                args.putString(MovieDetailActivity.ARG_YEAR, mMovie.getYear());
-                args.putString(MovieDetailActivity.ARG_POSTER, mMovie.getPoster_uri());
-                args.putString(MovieDetailActivity.ARG_DESCRIPTION, mMovie.getDescription());
-                args.putDouble(MovieDetailActivity.ARG_RATING, mMovie.getRating());
-                args.putString(MovieDetailActivity.ARG_STARS, mMovie.getStars());
+                args.putString(TickDetailActivity.ARG_NAME, mTick.getName());
+                args.putString(TickDetailActivity.ARG_GRADE, mTick.getGrade());
+                args.putString(TickDetailActivity.ARG_URI, mTick.getImage_uri());
 
                 Intent i = new Intent();
                 i.putExtras(args);
-                i.setClass(MainActivity.this, MovieDetailActivity.class);
+                i.setClass(TickListActivity.this, TickDetailActivity.class);
                 startActivity(i);
-                */
-                Log.d("clicks", "registered tick click");
+
+
 
             }
             @Override

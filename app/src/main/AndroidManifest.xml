@@ -20,6 +20,7 @@
         <activity android:name=".VODActivity" />
         <activity android:name=".TickListActivity" />
         <activity android:name=".UserProfileActivity" />
+        <activity android:name=".TickDetailActivity"></activity>
     </application>
 
 </manifest>
