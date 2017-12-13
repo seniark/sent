@@ -62,6 +62,9 @@ public class TickListActivity extends BaseNavDrawerActivity {
                 //{
                 //    tra.notifyItemRemoved(0);
                 //}
+                Log.d("db", "onDataChange");
+
+                int oldsize = mTickList.size();
 
                 if(mTickList.size() > 0)
                 {
@@ -75,7 +78,22 @@ public class TickListActivity extends BaseNavDrawerActivity {
                     mTickList.add(tickSnapshot.getValue(Tick.class));
                     Log.d("db", tickSnapshot.getValue(Tick.class).getName());
                 }
+
                 recycler_view.getAdapter().notifyItemRangeInserted(0,mTickList.size() - 1);
+                recycler_view.getAdapter().notifyDataSetChanged();
+
+                //This is a brand new tick, go to detail view for it
+                if(mTickList.size() > oldsize)
+                {
+                    Bundle args = new Bundle();
+                    args.putString(TickDetailActivity.ARG_TICKNUM, Integer.toString(mTickList.size() -1));
+
+                    Intent i = new Intent();
+                    i.putExtras(args);
+                    i.setClass(TickListActivity.this, TickDetailActivity.class);
+                    startActivity(i);
+
+                }
             }
 
             @Override
@@ -112,7 +130,7 @@ public class TickListActivity extends BaseNavDrawerActivity {
     }
 
 
-
+    /*
     protected void testDB()
     {
         ArrayList<Tick> t = new ArrayList<>();
@@ -126,10 +144,28 @@ public class TickListActivity extends BaseNavDrawerActivity {
         t.add(t4);
         postTicks(t);
     }
+    */
 
     protected void postTicks(List<Tick> t)
     {
         mTickListRef.setValue(t);
+    }
+
+    protected void postTickAtEnd(Tick t)
+    {
+        mTickListRef.push().setValue(t);
+    }
+
+    protected void onFabClick(View v)
+    {
+        Tick t = new Tick("New Tick", "5.X", "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_5.jpg?alt=media&token=6d826d65-1dc0-4ced-bd47-a87a5f91b14e", "");
+        postTickAtEnd(t);
+        Log.d("fab", "clicked");
+
+
+
+
+
     }
 
 }

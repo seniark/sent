@@ -87,9 +87,14 @@ public class TickDetailActivity extends BaseNavDrawerActivity {
         mTickListRef.addValueEventListener(tickListener);
     }
 
-    protected void postTickToPosition(Tick t, int p)
+    public void postTickToPosition(Tick t, int p)
     {
         mTickListRef.child(Integer.toString(p)).setValue(t);
+    }
+
+    public void postTickToEnd(Tick t)
+    {
+        mTickListRef.push().setValue(t);
     }
 
     protected void setNewValue(Tick.Field tf)

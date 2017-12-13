@@ -20,6 +20,7 @@ public class TickRecyclerAdapter extends RecyclerView.Adapter<TickRecyclerAdapte
     List<Tick> list_tick;
     OnItemClickListener vc=null;
     Context mCtx_MR;
+    RecyclerView mRV;
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -93,5 +94,16 @@ public class TickRecyclerAdapter extends RecyclerView.Adapter<TickRecyclerAdapte
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
+        mRV = recyclerView;
+    }
+
+    protected void onFabClick(View v)
+    {
+        Tick t = new Tick("New Tick", "5.X", "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_5.jpg?alt=media&token=6d826d65-1dc0-4ced-bd47-a87a5f91b14e", "");
+        ((TickDetailActivity)mRV.getParent()).postTickToEnd(t);
+
+
+
+        //mRV.scrollToPosition(list_tick.size());
     }
 }
