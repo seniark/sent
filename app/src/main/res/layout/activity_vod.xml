@@ -10,10 +10,4 @@
         android:layout_height="300dp">
 
     </com.google.android.youtube.player.YouTubePlayerView>
-    <Button
-        android:id="@+id/play_button"
-        android:text="Play"
-        app:layout_constraintTop_toBottomOf="@id/my_youtube_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 </android.support.constraint.ConstraintLayout>

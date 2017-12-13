@@ -24,7 +24,6 @@ public class VODActivity extends YouTubeBaseActivity {
     private DatabaseReference mVodRef;
     private String video_url;
     private TextView content;
-    Button b;
     YouTubePlayerView ypv;
     YouTubePlayer.OnInitializedListener onInitializedListener;
 
@@ -43,7 +42,6 @@ public class VODActivity extends YouTubeBaseActivity {
 
 
         ypv=(YouTubePlayerView)findViewById(R.id.my_youtube_view);
-        b=(Button)findViewById(R.id.play_button);
         onInitializedListener=new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider,
@@ -62,15 +60,8 @@ public class VODActivity extends YouTubeBaseActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 video_url = dataSnapshot.getValue(String.class);
-                Log.d("yt", "registering onClick...");
-                b.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        ypv.initialize("AIzaSyAPM5u5xJWKy95zSyvq8Kccu9BfgRCNIXs",
-                                onInitializedListener);
-                    }
-                });
-
+                ypv.initialize("AIzaSyAPM5u5xJWKy95zSyvq8Kccu9BfgRCNIXs",
+                        onInitializedListener);
             }
 
             @Override
