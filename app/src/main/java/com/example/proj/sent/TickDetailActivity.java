@@ -20,12 +20,12 @@ import com.google.firebase.database.ValueEventListener;
 
 public class TickDetailActivity extends BaseNavDrawerActivity {
 
-    public static final String ARG_TICKNUM = "ticknum";
+    public static final String ARG_TICKID = "tickid";
 
     private TextView routeName;
     private TextView routeGrade;
     private ImageView route_img;
-    private int tickNumber;
+    private String mTickID;
     private FirebaseDatabase mDatabase;
     private DatabaseReference mTickListRef;
     private Tick mTick;
@@ -46,8 +46,8 @@ public class TickDetailActivity extends BaseNavDrawerActivity {
 
         mEditing = Tick.Field.NAME;
 
-        tickNumber = Integer.parseInt(args.getString(ARG_TICKNUM));
-        Log.d("td", "Tick Number: " + Integer.toString(tickNumber));
+        mTickID = args.getString(ARG_TICKID);
+        Log.d("dbg", "Tick ID: " + mTickID);
 
         mDatabase = FirebaseDatabase.getInstance();
         mTickListRef = mDatabase.getReference(FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -59,10 +59,11 @@ public class TickDetailActivity extends BaseNavDrawerActivity {
                 for(DataSnapshot tickSnapshot : dataSnapshot.getChildren())
                 {
                     //deal with tick object
-                    if(i == tickNumber)
+                    Log.d("dbg", "tickSnapshot.getKey() = " + tickSnapshot.getKey());
+                    if(tickSnapshot.getKey().equals(mTickID))
                     {
                         mTick = tickSnapshot.getValue(Tick.class);
-                        Log.d("db", tickSnapshot.getValue(Tick.class).getName());
+                        Log.d("dbg", tickSnapshot.getValue(Tick.class).getName());
                         break;
                     }
                     i++;
@@ -81,15 +82,16 @@ public class TickDetailActivity extends BaseNavDrawerActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Getting tick failed, log a message
-                Log.w("db", "loadPost:onCancelled", databaseError.toException());
+                Log.w("dbg", "loadPost:onCancelled", databaseError.toException());
             }
         };
         mTickListRef.addValueEventListener(tickListener);
     }
 
-    public void postTickToPosition(Tick t, int p)
+    public void updateExistingTickDb(Tick t)
     {
-        mTickListRef.child(Integer.toString(p)).setValue(t);
+        DatabaseReference dr= mTickListRef.child(t.getDbkey());
+        dr.setValue(t);
     }
 
     public void postTickToEnd(Tick t)
@@ -121,13 +123,13 @@ public class TickDetailActivity extends BaseNavDrawerActivity {
                         mTick.setGrade(value);
                         break;
                     case IMAGEURI:
-                        Log.d("", "NOT IMPLEMENTED");
+                        Log.d("dbg", "NOT IMPLEMENTED");
                         break;
                     default:
-                        Log.d("detail", "field not found");
+                        Log.d("dbg", "field not found");
                         return;
                 }
-                postTickToPosition(mTick, tickNumber);
+                updateExistingTickDb(mTick);
             }
         });
 

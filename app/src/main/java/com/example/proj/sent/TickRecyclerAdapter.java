@@ -42,7 +42,7 @@ public class TickRecyclerAdapter extends RecyclerView.Adapter<TickRecyclerAdapte
 
     public void setOnItemClickListener(OnItemClickListener _vo){
         vc=_vo;
-        Log.d("Clicks", "setOnItemClickListener Called");
+        Log.d("dbg", "setOnItemClickListener Called");
         if(_vo.equals(null)) Log.d("Clicks", "But it was null");
     }
 
@@ -95,15 +95,5 @@ public class TickRecyclerAdapter extends RecyclerView.Adapter<TickRecyclerAdapte
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
         mRV = recyclerView;
-    }
-
-    protected void onFabClick(View v)
-    {
-        Tick t = new Tick("New Tick", "5.X", "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_5.jpg?alt=media&token=6d826d65-1dc0-4ced-bd47-a87a5f91b14e", "");
-        ((TickDetailActivity)mRV.getParent()).postTickToEnd(t);
-
-
-
-        //mRV.scrollToPosition(list_tick.size());
     }
 }

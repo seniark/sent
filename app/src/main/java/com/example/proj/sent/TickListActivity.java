@@ -62,9 +62,9 @@ public class TickListActivity extends BaseNavDrawerActivity {
                 //{
                 //    tra.notifyItemRemoved(0);
                 //}
-                Log.d("db", "onDataChange");
+                Log.d("dbg", "onDataChange");
 
-                int oldsize = mTickList.size();
+                //int oldsize = mTickList.size();
 
                 if(mTickList.size() > 0)
                 {
@@ -75,14 +75,16 @@ public class TickListActivity extends BaseNavDrawerActivity {
                 for(DataSnapshot tickSnapshot : dataSnapshot.getChildren())
                 {
                     //deal with tick object
-                    mTickList.add(tickSnapshot.getValue(Tick.class));
-                    Log.d("db", tickSnapshot.getValue(Tick.class).getName());
+                    Tick curTick = tickSnapshot.getValue(Tick.class);
+                    mTickList.add(curTick);
+                    Log.d("dbg", tickSnapshot.getValue(Tick.class).getName());
                 }
 
                 recycler_view.getAdapter().notifyItemRangeInserted(0,mTickList.size() - 1);
                 recycler_view.getAdapter().notifyDataSetChanged();
 
                 //This is a brand new tick, go to detail view for it
+                /*
                 if(mTickList.size() > oldsize)
                 {
                     Bundle args = new Bundle();
@@ -94,12 +96,13 @@ public class TickListActivity extends BaseNavDrawerActivity {
                     startActivity(i);
 
                 }
+                */
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Getting tick failed, log a message
-                Log.w("db", "loadPost:onCancelled", databaseError.toException());
+                Log.w("dbg", "loadPost:onCancelled", databaseError.toException());
             }
         };
         mTickListRef.addValueEventListener(tickListener);
@@ -114,10 +117,11 @@ public class TickListActivity extends BaseNavDrawerActivity {
             @Override
             public void onItemClick(View v, int position) {
 
-                Log.d("clicks", "registered tick click");
+                Log.d("dbg", "adapter item onClick, TickListActivity: sending ticknum");
 
                 Bundle args = new Bundle();
-                args.putString(TickDetailActivity.ARG_TICKNUM, Integer.toString(position));
+                Tick passToDetail = mTickList.get(position);
+                args.putString(TickDetailActivity.ARG_TICKID,passToDetail.getDbkey());
 
                 Intent i = new Intent();
                 i.putExtras(args);
@@ -129,23 +133,6 @@ public class TickListActivity extends BaseNavDrawerActivity {
         });
     }
 
-
-    /*
-    protected void testDB()
-    {
-        ArrayList<Tick> t = new ArrayList<>();
-        Tick t1 = new Tick("TestRoute", "5.1", "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_1.jpg?alt=media&token=9525eb9b-da1f-4dcf-8be3-3c807992f77b");
-        Tick t2 = new Tick("TestRoute2", "5.2", "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_2.png?alt=media&token=b7d2dea3-7f33-4e5e-b219-d9a4e6966dd5");
-        Tick t3 = new Tick("TestRoute3","5.11a", "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_3.png?alt=media&token=f918fc77-ca34-45be-802e-7dde10339abd");
-        Tick t4 = new Tick("TestRoute4", "5.10b", "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_5.jpg?alt=media&token=6d826d65-1dc0-4ced-bd47-a87a5f91b14e");
-        t.add(t1);
-        t.add(t2);
-        t.add(t3);
-        t.add(t4);
-        postTicks(t);
-    }
-    */
-
     protected void postTicks(List<Tick> t)
     {
         mTickListRef.setValue(t);
@@ -153,14 +140,18 @@ public class TickListActivity extends BaseNavDrawerActivity {
 
     protected void postTickAtEnd(Tick t)
     {
-        mTickListRef.push().setValue(t);
+        Log.d("dbg", "postTickAtEnd in TickListActivity: " + t.getName());
+        mTickList.add(t);
+        DatabaseReference sp = mTickListRef.push();
+        t.setDbkey(sp.getKey());
+        sp.setValue(t);
     }
 
     protected void onFabClick(View v)
     {
         Tick t = new Tick("New Tick", "5.X", "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_5.jpg?alt=media&token=6d826d65-1dc0-4ced-bd47-a87a5f91b14e", "");
         postTickAtEnd(t);
-        Log.d("fab", "clicked");
+        Log.d("dbg", "FAB clicked");
 
 
 

@@ -14,8 +14,14 @@ public class Tick {
     private String grade;
     private String image_uri;
     private String description;
+    private String dbkey;
 
-
+    public String getDbkey() {
+        return dbkey;
+    }
+    public void setDbkey(String dbkey) {
+        this.dbkey = dbkey;
+    }
     public String getName() {return this.name; }
     public String getGrade() {return this.grade; }
     public String getImage_uri() {return this.image_uri;}
@@ -32,6 +38,7 @@ public class Tick {
         this.grade = grade;
         this.image_uri = image_uri;
         this.description = description;
+        this.dbkey = "";
     }
 
     public Tick()
@@ -40,6 +47,7 @@ public class Tick {
         this.grade = "";
         this.image_uri= "";
         this.description = "";
+        this.dbkey = "";
     }
 
 }
