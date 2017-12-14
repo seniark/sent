@@ -30,11 +30,48 @@
             android:orientation="vertical"
             android:layout_below="@id/my_toolbar"
             android:id="@+id/homeLinearLayout">
+            
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Welcome!"/>
+                android:layout_height="wrap_content"
+                android:text="Welcome to Sent!"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_gravity="center"/>
+
+            <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Tick Entries:"
+            android:textSize="23dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/homeTCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="60dp"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_gravity="center"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Get Started!"
+                android:onClick="getStartedClick"/>
+
+
 
         </LinearLayout>
 

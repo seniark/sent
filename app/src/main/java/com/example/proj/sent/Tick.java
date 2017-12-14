@@ -7,15 +7,31 @@ package com.example.proj.sent;
 public class Tick {
 
     public enum Field {
-        NAME, GRADE, IMAGEURI;
+        NAME, GRADE, IMAGEURI, DESC;
     }
 
     private String name;
     private String grade;
     private String image_uri;
     private String description;
+    private String location;
+    private String date;
     private String dbkey;
 
+
+
+    public String getLocation() {
+        return location;
+    }
+    public void setLocation(String location) {
+        this.location = location;
+    }
+    public String getDate() {
+        return date;
+    }
+    public void setDate(String date) {
+        this.date = date;
+    }
     public String getDbkey() {
         return dbkey;
     }
@@ -32,12 +48,14 @@ public class Tick {
     public void setDescription(String d) {this.description = d;}
 
 
-    public Tick(String name, String grade, String image_uri, String description)
+    public Tick(String name, String grade, String image_uri, String description, String location, String date)
     {
         this.name = name;
         this.grade = grade;
         this.image_uri = image_uri;
         this.description = description;
+        this.location = location;
+        this.date = date;
         this.dbkey = "";
     }
 
@@ -47,6 +65,8 @@ public class Tick {
         this.grade = "";
         this.image_uri= "";
         this.description = "";
+        this.location = "";
+        this.date = "";
         this.dbkey = "";
     }
 

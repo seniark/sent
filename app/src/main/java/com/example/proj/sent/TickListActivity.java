@@ -17,7 +17,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class TickListActivity extends BaseNavDrawerActivity {
 
@@ -25,6 +27,11 @@ public class TickListActivity extends BaseNavDrawerActivity {
     private DatabaseReference mTickListRef;
     private List<Tick> mTickList;
     private RecyclerView recycler_view;
+    private List<String> firebaseImages = Arrays.asList(
+            "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_1.jpg?alt=media&token=9525eb9b-da1f-4dcf-8be3-3c807992f77b",
+            "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_2.png?alt=media&token=b7d2dea3-7f33-4e5e-b219-d9a4e6966dd5",
+            "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_4.jpg?alt=media&token=62d8e17b-abb4-4846-aea3-0dd721453ca0",
+            "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_5.jpg?alt=media&token=6d826d65-1dc0-4ced-bd47-a87a5f91b14e");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,7 +156,15 @@ public class TickListActivity extends BaseNavDrawerActivity {
 
     protected void onFabClick(View v)
     {
-        Tick t = new Tick("New Tick", "5.X", "https://firebasestorage.googleapis.com/v0/b/sent-55f87.appspot.com/o/min_mtn_5.jpg?alt=media&token=6d826d65-1dc0-4ced-bd47-a87a5f91b14e", "");
+        Random rand = new Random();
+        int n = rand.nextInt(firebaseImages.size());
+        Tick t = new Tick("New Tick",
+                "5.X",
+                firebaseImages.get(n),
+                "Add Notes...",
+                "Set Location",
+                "Set Date");
+
         postTickAtEnd(t);
         Log.d("dbg", "FAB clicked");
 

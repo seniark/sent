@@ -43,27 +43,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
+                android:paddingLeft="15dp"
                 android:layout_below="@id/tickDetailBanner">
+
+                <ImageView
+                    android:id="@+id/nameIcon"
+                    android:layout_marginTop="7dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_details_black_24dp"/>
 
                 <TextView
                     android:id="@+id/detailRouteNameTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/nameIcon"
                     android:gravity="left"
                     android:textSize="20dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp" />
 
+                <ImageView
+                    android:id="@+id/gradeIcon"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_below="@id/nameIcon"
+                    android:src="@drawable/ic_terrain_black_24dp"/>
+
 
                 <TextView
                     android:id="@+id/detailRouteGradeTextView"
+                    android:layout_toRightOf="@+id/gradeIcon"
                     android:layout_below="@+id/detailRouteNameTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5.10a"
                     android:gravity="left"
                     android:paddingLeft="15dp"
-                    android:paddingBottom="10dp"
+                    android:paddingRight="15dp"
                     android:textSize="14sp" />
 
                 <Button
@@ -81,9 +99,111 @@
                     android:layout_below="@+id/detailRouteNameTextView"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:paddingTop="30dp"
                     android:onClick="editPressed"
                     android:background="@drawable/ic_pencil_grey600_18dp"/>
+
+                <ImageView
+                    android:id="@+id/locationIcon"
+                    android:layout_marginTop="7dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_below="@id/gradeIcon"
+                    android:src="@drawable/ic_location_on_black_24dp"/>
+
+                <TextView
+                    android:id="@+id/detailLocationTextView"
+                    android:layout_toRightOf="@+id/locationIcon"
+                    android:layout_below="@+id/detailRouteGradeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="Syracuse, NY"
+                    android:gravity="left"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/mapPick"
+                    android:layout_toRightOf="@+id/detailRouteNameTextView"
+                    android:layout_below="@id/detailRouteGradeTextView"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="2dp"
+                    android:onClick="mapPickClicked"
+                    android:background="@drawable/ic_pencil_grey600_18dp"/>
+
+                <ImageView
+                    android:id="@+id/timeIcon"
+                    android:layout_marginTop="7dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_below="@id/locationIcon"
+                    android:src="@drawable/ic_query_builder_black_24dp"/>
+
+                <TextView
+                    android:id="@+id/detailDateTextView"
+                    android:layout_toRightOf="@+id/timeIcon"
+                    android:layout_below="@+id/detailLocationTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="10/7/16"
+                    android:gravity="left"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/datePick"
+                    android:layout_toRightOf="@+id/detailRouteNameTextView"
+                    android:layout_below="@id/detailLocationTextView"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="2dp"
+                    android:onClick="datePickClicked"
+                    android:background="@drawable/ic_pencil_grey600_18dp"/>
+
+                <ImageView
+                    android:id="@+id/notesIcon"
+                    android:layout_marginTop="7dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_below="@id/timeIcon"
+                    android:src="@drawable/ic_note_black_24dp"/>
+
+                <TextView
+                    android:id="@+id/notesTextEdit"
+                    android:layout_toRightOf="@+id/notesIcon"
+                    android:layout_below="@+id/detailDateTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:gravity="left"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/editNotesButton"
+                    android:layout_toRightOf="@+id/detailRouteNameTextView"
+                    android:layout_below="@+id/detailDateTextView"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="2dp"
+                    android:onClick="editPressed"
+                    android:background="@drawable/ic_pencil_grey600_18dp"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_delete_black_24dp"
+                    android:id="@+id/deleteButton"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/notesIcon"
+                    android:onClick="deleteClicked"></ImageButton>
+
+
 
             </RelativeLayout>
 

@@ -27,6 +27,7 @@ public class TickRecyclerAdapter extends RecyclerView.Adapter<TickRecyclerAdapte
         public TextView route_name;
         public TextView route_grade;
         public ImageView route_img;
+
         public ViewHolder(View view) {
             super(view);
             route_name = view.findViewById(R.id.routeNameTextView);

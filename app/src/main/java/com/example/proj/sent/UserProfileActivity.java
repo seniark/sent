@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class UserProfileActivity extends BaseNavDrawerActivity {
 
     private TextView name;
+    private TextView email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,10 @@ public class UserProfileActivity extends BaseNavDrawerActivity {
         getSupportActionBar().setTitle("User Profile");
 
         name = findViewById(R.id.name_text);
-        name.setText("Hello, " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        name.setText("Name: " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        email = findViewById(R.id.email_text);
+        email.setText("Email: "  + FirebaseAuth.getInstance().getCurrentUser().getEmail());
+
     }
 
     protected void signOutClicked(View v)

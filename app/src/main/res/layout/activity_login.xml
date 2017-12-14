@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/SentTitle"
-            android:text="Sent."
+            android:text="Sent"
             android:textSize="88dp"
             android:textStyle="bold"
             android:fontFeatureSettings="b"
